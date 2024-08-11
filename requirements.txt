@@ -1,1 +1,2 @@
 pystray~=0.19.5
+pyside6~=6.7.2
