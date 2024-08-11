@@ -16,7 +16,7 @@ setup(
     license="BSD-3-Clause",
     author="leopoldhub",
     author_email="hubertleopold01@gmail.com",
-    description="Simple tkinter python gui for fw-fanctrl.\nA separate installation of fw-fanctrl is required.",
+    description="Simple pyside Qt6 python gui with system tray for fw-fanctrl.\nA separate installation of fw-fanctrl is required.",
     entry_points={"console_scripts": ["fw-fanctrl-gui=src.__main__:main"]},
     classifiers=[
         "Programming Language :: Python :: 3",
