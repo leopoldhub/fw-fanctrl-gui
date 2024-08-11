@@ -145,7 +145,7 @@ class MainWindow:
         self.useStrategy(comboBox.currentText())
 
 
-def main(app, fanctrlService):
+def main(args, app, fanctrlService):
     app.setQuitOnLastWindowClosed(False)
 
     icon = QIcon()
@@ -168,7 +168,8 @@ def main(app, fanctrlService):
     )
 
     window = MainWindow(icon, fanctrlService)
-    window.ui.show()
+    if not args.background:
+        window.ui.show()
 
     window.tray = systemTrayMain(icon, app, window, fanctrlService)
 
