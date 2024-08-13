@@ -11,6 +11,7 @@ class SystemTray(QSystemTrayIcon):
         self.mainWindow = mainWindow
         self.fanctrlService = fanctrlService
         super().__init__()
+        self.setToolTip("fw fan control GUI")
         self.setIcon(icon)
 
         self.mainMenu = QMenu()
