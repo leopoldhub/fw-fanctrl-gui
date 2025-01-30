@@ -14,7 +14,7 @@ the [fw-fanctrl](https://github.com/TamtamHero/fw-fanctrl) CLI.
 
 It includes a basic GUI, as well as a system tray to easily change your fan profiles on the go.
 
-![tray.png](.documentationResources/screenshots/tray.png)
+![tray.png](.documentation/resources/screenshots/tray.png)
 
 > **Important information**
 >

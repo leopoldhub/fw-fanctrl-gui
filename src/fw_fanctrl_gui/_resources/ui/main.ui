@@ -1,0 +1,448 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.4" author="PygubuDesigner 0.40">
+  <project>
+    <settings />
+    <customwidgets />
+  </project>
+  <object class="customtkinter.CTk" id="ctk_window_main">
+    <property name="appearance_mode">dark</property>
+    <property name="color_theme">dark-blue</property>
+    <property name="geometry">1260x900</property>
+    <property name="height">900</property>
+    <property name="minsize">1260|900</property>
+    <property name="resizable">both</property>
+    <property name="title" translatable="yes">fw-fanctrl GUI</property>
+    <property name="width">1260</property>
+    <containerlayout manager="pack">
+      <property name="anchor">nw</property>
+    </containerlayout>
+    <child>
+      <object class="customtkinter.CTkFrame" id="ctk_frame_main" named="True">
+        <layout manager="pack">
+          <property name="anchor">nw</property>
+          <property name="expand">true</property>
+          <property name="fill">both</property>
+          <property name="side">top</property>
+        </layout>
+        <containerlayout manager="grid">
+          <property type="col" id="0" name="minsize">180</property>
+          <property type="col" id="0" name="weight">1</property>
+          <property type="col" id="1" name="weight">6</property>
+          <property type="col" id="all" name="weight">1</property>
+          <property type="row" id="all" name="weight">1</property>
+        </containerlayout>
+        <child>
+          <object class="customtkinter.CTkFrame" id="ctk_frame_toolbar" named="True">
+            <property name="corner_radius">0</property>
+            <property name="fg_color">gray10</property>
+            <layout manager="grid">
+              <property name="column">0</property>
+              <property name="row">0</property>
+              <property name="sticky">nsew</property>
+            </layout>
+            <child>
+              <object class="customtkinter.CTkLabel" id="ctk_label_title" named="True">
+                <property name="font">{arial} 36 {}</property>
+                <property name="text" translatable="yes">fw-fanctrl GUI</property>
+                <layout manager="pack">
+                  <property name="anchor">center</property>
+                  <property name="fill">x</property>
+                  <property name="pady">20</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkFrame" id="ctk_frame_settings" named="True">
+                <property name="fg_color">gray10</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+                <containerlayout manager="grid">
+                  <property type="col" id="all" name="weight">1</property>
+                </containerlayout>
+                <child>
+                  <object class="customtkinter.CTkButton" id="ctk_button_settings" named="True">
+                    <property name="fg_color">#1c2e30</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">Settings</property>
+                    <property name="width">80</property>
+                    <layout manager="grid">
+                      <property name="column">0</property>
+                      <property name="row">0</property>
+                      <property name="sticky">e</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="customtkinter.CTkRadioButton" id="ctk_radio_status" named="True">
+                    <property name="fg_color">#808080</property>
+                    <property name="text" translatable="yes">checking</property>
+                    <property name="value">1</property>
+                    <property name="variable">string:reachable_status</property>
+                    <layout manager="grid">
+                      <property name="column">1</property>
+                      <property name="padx">10</property>
+                      <property name="row">0</property>
+                      <property name="sticky">w</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkFrame" id="ctk_separator_1" named="True">
+                <property name="border_color">#808080</property>
+                <property name="border_width">2</property>
+                <property name="corner_radius">0</property>
+                <property name="height">4</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">30</property>
+                  <property name="pady">20</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkLabel" id="ctk_label_service" named="True">
+                <property name="anchor">w</property>
+                <property name="font">{arial} 16 {}</property>
+                <property name="text" translatable="yes">Service</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">40</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkButton" id="ctk_button_pause_resume" named="True">
+                <property name="border_spacing">10</property>
+                <property name="text" translatable="yes">Pause / Resume</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="pady">10</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkButton" id="ctk_button_reload" named="True">
+                <property name="border_spacing">10</property>
+                <property name="text" translatable="yes">Reload Configuration</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="pady">10</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkLabel" id="ctk_label_current_strategy" named="True">
+                <property name="anchor">w</property>
+                <property name="font">{arial} 14 {}</property>
+                <property name="text" translatable="yes">Current Strategy</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkOptionMenu" id="ctk_option_current_strategy" named="True">
+                <property name="values">[]</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="pady">10</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkFrame" id="ctk_separator_2" named="True">
+                <property name="border_color">#808080</property>
+                <property name="border_width">2</property>
+                <property name="corner_radius">0</property>
+                <property name="height">4</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">30</property>
+                  <property name="pady">20</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkLabel" id="ctk_label_edition" named="True">
+                <property name="anchor">w</property>
+                <property name="font">{arial} 16 {}</property>
+                <property name="text" translatable="yes">Edition</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">40</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkFrame" id="ctk_frame_edition" named="True">
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="pady">10</property>
+                  <property name="side">top</property>
+                </layout>
+                <containerlayout manager="grid">
+                  <property type="col" id="0" name="weight">10</property>
+                  <property type="col" id="1" name="weight">1</property>
+                  <property type="col" id="2" name="weight">1</property>
+                </containerlayout>
+                <child>
+                  <object class="customtkinter.CTkOptionMenu" id="ctk_option_edition_strategy" named="True">
+                    <property name="fg_color">#1c2e30</property>
+                    <property name="state">disabled</property>
+                    <property name="values">[]</property>
+                    <layout manager="grid">
+                      <property name="column">0</property>
+                      <property name="row">0</property>
+                      <property name="sticky">nsew</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="customtkinter.CTkButton" id="ctk_button_add" named="True">
+                    <property name="fg_color">#1c2e30</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">+</property>
+                    <property name="width">30</property>
+                    <layout manager="grid">
+                      <property name="column">1</property>
+                      <property name="row">0</property>
+                      <property name="sticky">e</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="customtkinter.CTkButton" id="ctk_button_delete" named="True">
+                    <property name="fg_color">#b30029</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">-</property>
+                    <property name="width">30</property>
+                    <layout manager="grid">
+                      <property name="column">2</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkFrame" id="ctk_separator_3" named="True">
+                <property name="border_color">#808080</property>
+                <property name="border_width">2</property>
+                <property name="corner_radius">0</property>
+                <property name="height">4</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">30</property>
+                  <property name="pady">20</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkLabel" id="ctk_label_configuration" named="True">
+                <property name="anchor">w</property>
+                <property name="font">{arial} 16 {}</property>
+                <property name="text" translatable="yes">Configuration</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">40</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkLabel" id="ctk_label_default_strategy" named="True">
+                <property name="anchor">w</property>
+                <property name="font">{arial} 14 {}</property>
+                <property name="text" translatable="yes">Default Strategy</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkOptionMenu" id="ctk_option_default_strategy" named="True">
+                <property name="fg_color">#1c2e30</property>
+                <property name="state">disabled</property>
+                <property name="values">[]</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="pady">10</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkLabel" id="ctk_label_default_on_battery" named="True">
+                <property name="anchor">w</property>
+                <property name="font">{arial} 14 {}</property>
+                <property name="text" translatable="yes">Default Strategy On Battery</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkFrame" id="ctk_frame_config_on_battery" named="True">
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="pady">10</property>
+                  <property name="side">top</property>
+                </layout>
+                <containerlayout manager="grid">
+                  <property type="col" id="0" name="weight">2</property>
+                  <property type="col" id="1" name="weight">1</property>
+                </containerlayout>
+                <child>
+                  <object class="customtkinter.CTkOptionMenu" id="ctk_option_configuration_on_battery" named="True">
+                    <property name="fg_color">#1c2e30</property>
+                    <property name="state">disabled</property>
+                    <property name="values">[]</property>
+                    <layout manager="grid">
+                      <property name="column">0</property>
+                      <property name="row">0</property>
+                      <property name="sticky">nsew</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="customtkinter.CTkCheckBox" id="ctk_checkbox_enable_on_battery" named="True">
+                    <property name="fg_color">#1c2e30</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">Enabled</property>
+                    <layout manager="grid">
+                      <property name="column">1</property>
+                      <property name="row">0</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkButton" id="ctk_button_save_configuration" named="True">
+                <property name="border_spacing">10</property>
+                <property name="fg_color">#1c2e30</property>
+                <property name="state">disabled</property>
+                <property name="text" translatable="yes">Save Configuration</property>
+                <layout manager="pack">
+                  <property name="fill">x</property>
+                  <property name="padx">50</property>
+                  <property name="pady">40</property>
+                  <property name="side">bottom</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkLabel" id="ctk_label_github_link" named="True">
+                <property name="cursor">hand1</property>
+                <property name="font">{arial} 16 {underline}</property>
+                <property name="text" translatable="yes">GitHub - fw-fanctrl GUI</property>
+                <property name="text_color">#236eb1</property>
+                <layout manager="pack">
+                  <property name="anchor">w</property>
+                  <property name="padx">50</property>
+                  <property name="side">bottom</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="customtkinter.CTkFrame" id="ctk_frame_content" named="True">
+            <property name="corner_radius">0</property>
+            <property name="fg_color">gray17</property>
+            <layout manager="grid">
+              <property name="column">1</property>
+              <property name="row">0</property>
+              <property name="sticky">nsew</property>
+            </layout>
+            <child>
+              <object class="customtkinter.CTkFrame" id="ctk_frame_strategy_header" named="True">
+                <layout manager="pack">
+                  <property name="anchor">nw</property>
+                  <property name="fill">x</property>
+                  <property name="padx">20</property>
+                  <property name="pady">20</property>
+                  <property name="side">top</property>
+                </layout>
+                <containerlayout manager="grid">
+                  <property type="col" id="all" name="weight">1</property>
+                </containerlayout>
+                <child>
+                  <object class="customtkinter.CTkTextbox" id="ctk_textbox_strategy_name" named="True">
+                    <property name="fg_color">#1c2e30</property>
+                    <property name="font">{arial} 20 {}</property>
+                    <property name="height">50</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">Strategy name</property>
+                    <property name="undo">true</property>
+                    <property name="width">400</property>
+                    <property name="wrap">none</property>
+                    <layout manager="grid">
+                      <property name="column">0</property>
+                      <property name="padx">20</property>
+                      <property name="pady">20</property>
+                      <property name="row">0</property>
+                      <property name="sticky">w</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="customtkinter.CTkButton" id="ctk_button_save_strategy" named="True">
+                    <property name="border_spacing">10</property>
+                    <property name="fg_color">#1c2e30</property>
+                    <property name="state">disabled</property>
+                    <property name="text" translatable="yes">Save Strategy</property>
+                    <layout manager="grid">
+                      <property name="column">4</property>
+                      <property name="padx">20</property>
+                      <property name="pady">20</property>
+                      <property name="row">0</property>
+                      <property name="sticky">e</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="customtkinter.CTkFrame" id="ctk_frame_graph" named="True">
+                <layout manager="pack">
+                  <property name="anchor">nw</property>
+                  <property name="expand">true</property>
+                  <property name="fill">both</property>
+                  <property name="padx">20</property>
+                  <property name="pady">20</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -1,2 +1,66 @@
 [tool.black]
-line-length = 80
+exclude = '''
+/(
+    \.git
+  | \.github
+  | \.idea
+  | \.vscode
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[build-system]
+requires = ["setuptools>=75.7.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fw-fanctrl-gui"
+version = "0.0.1"
+description = "Simple customtkinter python gui with system tray for fw-fanctrl.\nA separate installation of fw-fanctrl is required."
+readme = "README.md"
+authors = [
+    { name = "leopoldhub" },
+]
+maintainers = [
+    { name = "leopoldhub" },
+]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Hardware",
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pygubu~=0.36",
+    "customtkinter~=5.2.2",
+    "pystray~=0.19.5",
+]
+optional-dependencies = { dev = [
+    "pygubu-designer~=0.40",
+    "black==24.8.0",
+    "build>=1.2.2.post1",
+    "setuptools>=75.7.0",
+] }
+
+[project.urls]
+Homepage = "https://github.com/leopoldhub/fw-fanctrl-gui"
+Documentation = "https://github.com/leopoldhub/fw-fanctrl-gui"
+Repository = "https://github.com/leopoldhub/fw-fanctrl-gui.git"
+Issues = "https://github.com/leopoldhub/fw-fanctrl-gui/issues"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.package-data]
+"fw_fanctrl_gui" = ["_resources/**/*"]
+
+[project.scripts]
+fw-fanctrl-gui = "fw_fanctrl_gui.__main__:main"
