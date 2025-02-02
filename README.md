@@ -5,16 +5,20 @@
 
 [![Static Badge](https://img.shields.io/badge/Python__3.12-FFDE57?style=flat&label=Requirement&link=https%3A%2F%2Fwww.python.org%2Fdownloads)](https://www.python.org/downloads)
 
-[![Static Badge](https://img.shields.io/badge/fw--fanctrl-12C6FF?style=flat&label=Requirement&link=https%3A%2F%2Fgithub.com%2FTamtamHero%2Ffw-fanctrl)](https://github.com/TamtamHero/fw-fanctrl)
+[![Static Badge](https://img.shields.io/badge/fw--fanctrl%20>=%20v1.0.1-12C6FF?style=flat&label=Requirement&link=https%3A%2F%2Fgithub.com%2FTamtamHero%2Ffw-fanctrl)](https://github.com/TamtamHero/fw-fanctrl)
+
+**⚠️ This version requires an experimental version of fw-fanctrl [leopoldhub/fw-fanctrl/full-api-compatibility](https://github.com/leopoldhub/fw-fanctrl/tree/full-api-compatibility) ⚠️**
 
 ## Description
 
-fw-fanctrl GUI is a simple multiplatform QT6 python GUI to interact with
+fw-fanctrl GUI is a simple multiplatform customtkinter python GUI to interact with
 the [fw-fanctrl](https://github.com/TamtamHero/fw-fanctrl) CLI.
 
 It includes a basic GUI, as well as a system tray to easily change your fan profiles on the go.
 
-![tray.png](.documentation/resources/screenshots/tray.png)
+![gui.png](.documentation/resources/screenshots/gui.png)
+
+<!-- ![tray.png](.documentation/resources/screenshots/tray.png) -->
 
 > **Important information**
 >
@@ -24,14 +28,16 @@ It includes a basic GUI, as well as a system tray to easily change your fan prof
 > Here are the currently supported features:
 >
 > - selecting/displaying the current strategy
+> - resetting to the default strategy
 > - reloading the service configuration
 > - pausing/resuming the service
 >
 > Here is the feature plan for the foreseeable future:
 >
-> - single-click installation script
-> - fan profile visualisation/creation/modification
-> - configurable shortcuts
+> - **System tray**
+> - **Background launch**
+> - selecting the default strategy
+> - enabling and selecting the discharging strategy
 
 ## Installation
 
@@ -88,11 +94,12 @@ pip install .
 To run the application, use the following command
 
 ```shell
-python -m src
+fw_fanctrl_gui
 ```
-
+<!--
 Here are the additional options you can use
 
 | Option           | Optional | Description                                                          |
 |------------------|----------|----------------------------------------------------------------------|
 | --background, -b | yes      | run the application in the background. does not open the main window |
+-->
