@@ -1,5 +1,15 @@
 # fw-fanctrl GUI
 
+---
+
+# ⚠️ Reforge in progress⚠️ 
+
+This branch is **deprecated** and **might not work properly**.
+
+The project is being [reforged with customtkinter](https://github.com/leopoldhub/fw-fanctrl-gui/tree/customtkinter).
+
+---
+
 ![Static Badge](https://img.shields.io/badge/Global-9AFF59?style=flat&label=Platform)
 ![Static Badge](https://img.shields.io/badge/no%20binary%20blobs-30363D?style=flat&logo=GitHub-Sponsors&logoColor=4dff61)
 
