@@ -8,12 +8,14 @@ from fw_fanctrl_gui.dto.ServiceStatus import ServiceStatus
 class PauseResumeButton:
     pause_resume_button: customtkinter.CTkButton
 
-    def __init__(self, main_window, master, builder, fanctrl_service, service_cached_status):
+    def __init__(
+        self, main_window, master, builder, fanctrl_service, timed_status_service
+    ):
         self.main_window = main_window
         self.master = master
         self.builder = builder
         self.fanctrl_service = fanctrl_service
-        self.service_cached_status = service_cached_status
+        self.timed_status_service = timed_status_service
 
         self.pause_resume_button = self.main_window.builder.get_object(
             "ctk_button_pause_resume", master
@@ -22,21 +24,25 @@ class PauseResumeButton:
             command=lambda: Thread(target=self.pause_resume_button_command).start()
         )
 
-        self.service_cached_status.connect(self.update_status_event)
-
+        self.timed_status_service.connect(self.update_status_event)
 
     def update_status_event(self, service_status: ServiceStatus):
-        if service_status.active != service_status.previously_active or service_status.previous_status.data is None:
-            self.update_pause_resume_button(service_status.reachable, service_status.active)
+        if (
+            service_status.active != service_status.previously_active
+            or service_status.previous_status.data is None
+        ):
+            self.update_pause_resume_button(
+                service_status.reachable, service_status.active
+            )
 
     def pause_resume_button_command(self):
-        if not self.service_cached_status.previous_status.reachable:
+        if not self.timed_status_service.previous_status.reachable:
             return
-        if self.service_cached_status.previous_status.active:
+        if self.timed_status_service.previous_status.active:
             self.fanctrl_service.pause()
         else:
             self.fanctrl_service.resume()
-        self.service_cached_status.updateStatus()
+        self.timed_status_service.updateStatus()
 
     def update_pause_resume_button(self, reachable, active):
         if not reachable:

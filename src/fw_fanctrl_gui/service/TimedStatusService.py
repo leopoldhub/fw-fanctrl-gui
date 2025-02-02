@@ -14,8 +14,14 @@ class ServiceCachedStatus(Signal):
 
     repeatingTimer: RepeatingTimer
 
-    previous_status: ServiceStatus = ServiceStatus(reachable=False, previously_reachable=False, active=False,
-                                                   previously_active=False, data=None, previous_status=None)
+    previous_status: ServiceStatus = ServiceStatus(
+        reachable=False,
+        previously_reachable=False,
+        active=False,
+        previously_active=False,
+        data=None,
+        previous_status=None,
+    )
 
     count = 0
 
@@ -40,9 +46,14 @@ class ServiceCachedStatus(Signal):
 
             reachable = fetch_result["status"] == "success"
             active = (lambda: fetch_result["active"])() if reachable else False
-            status = ServiceStatus(reachable=reachable, previously_reachable=previously_reachable, active=active,
-                                   previously_active=previously_active, data=fetch_result,
-                                   previous_status=self.previous_status)
+            status = ServiceStatus(
+                reachable=reachable,
+                previously_reachable=previously_reachable,
+                active=active,
+                previously_active=previously_active,
+                data=fetch_result,
+                previous_status=self.previous_status,
+            )
 
             self.previous_status = status
 
