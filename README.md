@@ -71,18 +71,6 @@ git clone "https://github.com/leopoldhub/fw-fanctrl-gui.git"
 curl -L "https://github.com/leopoldhub/fw-fanctrl-gui/archive/refs/heads/master.zip" -o "./fw-fanctrl-gui.zip" && unzip "./fw-fanctrl-gui.zip" -d "./fw-fanctrl-gui" && rm -rf "./fw-fanctrl-gui.zip"
 ```
 
-**windows**
-
-```shell
-git clone "https://github.com/leopoldhub/fw-fanctrl-gui.git"
-```
-
-```shell
-curl -L "https://github.com/leopoldhub/fw-fanctrl-gui/archive/refs/heads/master.zip" -o "./fw-fanctrl-gui.zip" && tar -xf "./fw-fanctrl-gui.zip" && del "./fw-fanctrl-gui.zip"
-```
-
----
-
 Then go inside the extracted folder with a terminal and install the dependencies with
 
 ```bash
