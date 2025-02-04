@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <interface version="1.4" author="PygubuDesigner 0.40">
   <project>
-    <settings />
-    <customwidgets />
+    <settings/>
+    <customwidgets/>
   </project>
   <object class="customtkinter.CTk" id="ctk_window_main">
     <property name="appearance_mode">dark</property>

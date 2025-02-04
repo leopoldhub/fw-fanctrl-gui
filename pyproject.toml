@@ -17,13 +17,14 @@ exclude = '''
 '''
 
 [build-system]
-requires = ["setuptools>=75.7.0"]
+requires = ["setuptools>=75.2.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "fw-fanctrl-gui"
 version = "0.0.1"
-description = "Simple customtkinter python gui with system tray for fw-fanctrl.\nA separate installation of fw-fanctrl is required."
+description = "Simple customtkinter python gui with system tray for fw-fanctrl. A separate installation of fw-fanctrl is required."
+keywords = ["framework", "laptop", "fan", "control", "gui"]
 readme = "README.md"
 authors = [
     { name = "leopoldhub" },
@@ -43,12 +44,14 @@ dependencies = [
     "customtkinter~=5.2.2",
     "pystray~=0.19.5",
     "fw_fanctrl==1.0.1",
+    "blinker~=1.9.0"
 ]
 optional-dependencies = { dev = [
     "pygubu-designer~=0.40",
     "black==24.8.0",
     "build>=1.2.2.post1",
     "setuptools>=75.7.0",
+    "PyGObject~=3.50.0"
 ] }
 
 [project.urls]

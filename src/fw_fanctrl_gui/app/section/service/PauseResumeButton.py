@@ -8,43 +8,32 @@ from fw_fanctrl_gui.dto.ServiceStatus import ServiceStatus
 class PauseResumeButton:
     pause_resume_button: customtkinter.CTkButton
 
-    def __init__(
-        self, main_window, master, builder, fanctrl_service, timed_status_service
-    ):
+    def __init__(self, main_window, master, builder, api_business):
         self.main_window = main_window
         self.master = master
         self.builder = builder
-        self.fanctrl_service = fanctrl_service
-        self.timed_status_service = timed_status_service
+        self.api_business = api_business
 
         self.pause_resume_button = self.main_window.builder.get_object(
             "ctk_button_pause_resume", master
         )
         self.pause_resume_button.configure(
-            command=lambda: Thread(target=self.pause_resume_button_command).start()
+            command=lambda: Thread(target=self.command, daemon=True).start()
         )
 
-        self.timed_status_service.connect(self.update_status_event)
+        self.api_business.active_changed_signal.connect(self.update)
 
-    def update_status_event(self, service_status: ServiceStatus):
-        if (
-            service_status.active != service_status.previously_active
-            or service_status.previous_status.data is None
-        ):
-            self.update_pause_resume_button(
-                service_status.reachable, service_status.active
-            )
-
-    def pause_resume_button_command(self):
-        if not self.timed_status_service.previous_status.reachable:
+    def command(self):
+        if not self.api_business.status().reachable:
             return
-        if self.timed_status_service.previous_status.active:
-            self.fanctrl_service.pause()
+        if self.api_business.status().active:
+            self.api_business.pause()
         else:
-            self.fanctrl_service.resume()
-        self.timed_status_service.updateStatus()
+            self.api_business.resume()
 
-    def update_pause_resume_button(self, reachable, active):
+    def update(self, data):
+        reachable = data[0]
+        active = data[1]
         if not reachable:
             self.pause_resume_button.configure(state=customtkinter.DISABLED)
             return

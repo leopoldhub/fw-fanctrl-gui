@@ -2,46 +2,34 @@ from threading import Thread
 
 import customtkinter
 
-from fw_fanctrl_gui.dto.ServiceStatus import ServiceStatus
-
 
 class ReloadConfigurationButton:
     reload_configuration_button: customtkinter.CTkButton
 
-    def __init__(
-        self, main_window, master, builder, fanctrl_service, timed_status_service
-    ):
+    def __init__(self, main_window, master, builder, api_business):
         self.main_window = main_window
         self.master = master
         self.builder = builder
-        self.fanctrl_service = fanctrl_service
-        self.timed_status_service = timed_status_service
+        self.api_business = api_business
 
         self.reload_configuration_button = self.main_window.builder.get_object(
             "ctk_button_reload", builder
         )
         self.reload_configuration_button.configure(
             command=lambda: Thread(
-                target=self.reload_configuration_button_command
+                target=self.reload_configuration_button_command, daemon=True
             ).start()
         )
 
-        self.timed_status_service.connect(self.update_status_event)
-
-    def update_status_event(self, service_status: ServiceStatus):
-        if (
-            service_status.active != service_status.previously_active
-            or service_status.previous_status.data is None
-        ):
-            self.update_reload_configuration_button(service_status.reachable)
+        self.api_business.active_changed_signal.connect(self.update)
 
     def reload_configuration_button_command(self):
-        if not self.timed_status_service.previous_status.reachable:
+        if not self.api_business.status().reachable:
             return
-        self.fanctrl_service.reload()
-        self.timed_status_service.updateStatus()
+        self.api_business.reload()
 
-    def update_reload_configuration_button(self, reachable):
+    def update(self, data):
+        reachable = data[0]
         if not reachable:
             self.reload_configuration_button.configure(state=customtkinter.DISABLED)
             return

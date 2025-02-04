@@ -7,7 +7,7 @@ class RepeatingTimer(Thread):
     delayMs = None
 
     def __init__(self, target, delayMs):
-        super().__init__(target=self._run)
+        super().__init__(target=self._run, daemon=True)
         self.target = target
         self.delayMs = delayMs
         self.daemon = True

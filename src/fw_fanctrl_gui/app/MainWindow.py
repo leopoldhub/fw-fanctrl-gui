@@ -2,26 +2,25 @@ import customtkinter
 
 from fw_fanctrl_gui.app.MainWindow_UI import MainWindow_UI
 from fw_fanctrl_gui.app.section.service.ServiceSection import ServiceSection
+from fw_fanctrl_gui.business.APIBusiness import APIBusiness
 from fw_fanctrl_gui.dto.ServiceStatus import ServiceStatus
-from fw_fanctrl_gui.service.TimedStatusService import ServiceCachedStatus
 
 
 class MainWindow(MainWindow_UI):
-    fanctrl_service = None
-    cached_service_details = None
+    api_business: APIBusiness
+
     radio_status_indicator: customtkinter.CTkRadioButton
 
     service_section: ServiceSection
 
-    def __init__(self, master=None, fanctrl_service=None):
-        super().__init__(master)
+    def __init__(
+        self, master=None, background_start=None, fanctrl_service=None, icon_path=None
+    ):
+        super().__init__(master, icon_path=icon_path)
         self.master = master
-        self.fanctrl_service = fanctrl_service
+        self.api_business = APIBusiness(fanctrl_service)
 
-        self.serviceCachedStatus = ServiceCachedStatus(self.fanctrl_service)
-        self.serviceCachedStatus.connect(self.update_status_event)
-
-        self.mainwindow.protocol("WM_DELETE_WINDOW", self.on_closing)
+        self.main_window.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         self.radio_status_indicator = self.builder.get_object(
             "ctk_radio_status", self.master
@@ -31,11 +30,11 @@ class MainWindow(MainWindow_UI):
             self,
             self.master,
             self.builder,
-            self.fanctrl_service,
-            self.serviceCachedStatus,
+            self.api_business,
         )
 
-        self.serviceCachedStatus.repeatingTimer.start()
+        if background_start:
+            self.main_window.withdraw()
 
     def update_status_event(self, service_status: ServiceStatus):
         if (
@@ -51,6 +50,7 @@ class MainWindow(MainWindow_UI):
             self.radio_status_indicator.configure(fg_color="red", text="Unreachable")
 
     def on_closing(self):
-        self.serviceCachedStatus.repeatingTimer.join(0)
-        self.mainwindow.destroy()
-        exit(0)
+        self.main_window.withdraw()
+
+    def run(self):
+        super().run()

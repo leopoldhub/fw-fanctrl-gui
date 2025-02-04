@@ -9,10 +9,10 @@ from fw_fanctrl_gui.service.FanctrlService import FanctrlService
 from fw_fanctrl_gui.utils.RepeatingTimer import RepeatingTimer
 
 
-class ServiceCachedStatus(Signal):
-    fanctrlService: FanctrlService
+class TimedStatusService(Signal):
+    fanctrl_service: FanctrlService
 
-    repeatingTimer: RepeatingTimer
+    repeating_timer: RepeatingTimer
 
     previous_status: ServiceStatus = ServiceStatus(
         reachable=False,
@@ -23,17 +23,15 @@ class ServiceCachedStatus(Signal):
         previous_status=None,
     )
 
-    count = 0
-
-    def __init__(self, fanctrlService):
+    def __init__(self, fanctrl_service):
         super().__init__("status-update")
-        self.fanctrlService = fanctrlService
-        self.repeatingTimer = RepeatingTimer(self.updateStatus, 1000)
+        self.fanctrl_service = fanctrl_service
+        self.repeating_timer = RepeatingTimer(self.updateStatus, 1000)
 
     def updateStatus(self):
         fetch_result = None
         try:
-            fetch_result = self.fanctrlService.getAll()
+            fetch_result = self.fanctrl_service.getAll()
         except FailedCommandException as e:
             fetch_result = e.args[0]
         except Exception as e:
@@ -58,3 +56,6 @@ class ServiceCachedStatus(Signal):
             self.previous_status = status
 
             self.send(status)
+
+    def start(self):
+        self.repeating_timer.start()
